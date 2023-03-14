@@ -1,0 +1,57 @@
+<section class="cb-contact">
+  <div class="cb-back-img-sec cb-top-right"><img src="{{ 'top-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-top-left"><img src="{{ 'top-left.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-right"><img src="{{ 'bottom-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-left"><img src="{{ 'bottom-left.png' | asset_url }}"></div>
+  <div class="cb-contact-container">
+    <h1 class="cb-heading-ar">Thank you for visiting Claybear</h1>
+    <p>Please feel fee to get in touch if you have any questions about our products.</p>
+    <p>You can email us at help@claybearoffical.com or use our contact form below.</p>
+    <p>We’d we look forward to hearing from you!</p>
+    <div class="cb-contact-form">
+      {% form 'contact' %}
+        {{ form.errors | default_errors }}
+        <div class="name">
+          <label for="name">Your Name*</label>
+          <input
+            type="text"
+            name="contact[name]"
+            id="name"
+            required
+            placeholder="Your Name Here" />
+        </div>
+        <div class="email">
+          <label for="email">Your Email*</label>
+          <input
+            type="email"
+            name="contact[email]"
+            id="email"
+            required
+            placeholder="Your Email Here" />
+        </div>
+        <div class="subject">
+          <label for="subject">Subject*</label>
+          <input
+            type="text"
+            name="contact[subject]"
+            id="subject"
+            required
+            placeholder="Your Subject Here" />
+        </div>
+        <div class="message">
+          <label for="message">Your Message*</label>
+          <textarea
+            name="contact[body]"
+            id="message"
+            rows="5"
+            required
+            placeholder="Your Message Here"></textarea>
+        </div>
+        <div class="submit">
+          <button type="submit" class="cb-btn">Send Message</button>
+        </div>
+      {% endform %}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<section class="cb-collection-section cb-product-h about-product-dec">
+  <div class="cb-container">
+    <h2 class="cb-heading-ar">{{ section.settings.product_heading }}</h2>
+    <div class="cb-row">
+      {% for product in section.settings.product_list limit: 4 %}
+        <div class="cb-col-3">
+          {% render 'product-item', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Family Favourite",
+    "settings": [
+      {
+        "type": "text",
+        "id": "product_heading",
+        "label": "Product Heading"
+      }, {
+        "type": "product_list",
+        "id": "product_list",
+        "label": "Collections",
+        "limit": 4
+      }
+    ]
+  }
+{% endschema %}

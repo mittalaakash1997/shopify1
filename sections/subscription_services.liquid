@@ -1,0 +1,84 @@
+<section class="cb-subsc-service">
+    <div class="cb-container">
+        {% for block in section.blocks %}
+            {% case block.type %}
+                {% when 'sec_row' %}
+                <div class="cb-row subs-row">
+                    <div class="cb-col-6">
+                        <div class="cb-right-serv">
+                        <img src="{{block.settings.image_sec | image_url}}" alt="{{block.settings.image_sec | image_alt}}">
+                        </div>
+                    </div>
+                    <div class="cb-col-6">
+                        <div class="cb-left-serv">
+                        <h2 class="cb-heading-ar">{{block.settings.title_sec}}</h2>
+                        <p>{{block.settings.text_sec}}</p>
+                        <a href="{{block.settings.button_url_sec}}" class="cb-btn">{{block.settings.button_text_sec}}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endcase %}
+        {% endfor %}
+    </div>
+</section>
+{% schema %}
+    {
+        "name": "Subscription Services",
+        "settings": [
+                        {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Services"
+                        }
+                    ],
+        "blocks": [
+                    {
+                    "name": "Row",
+                    "type": "sec_row",
+                    "settings": [
+                                    {
+                                    "type": "text",
+                                    "id": "title_sec",
+                                    "label": "Title"
+                                    },
+                                    {
+                                    "type": "richtext",
+                                    "id": "text_sec",
+                                    "label": "Description"
+                                    },
+                                    {
+                                    "type": "text",
+                                    "id": "button_text_sec",
+                                    "label": "Button Text"
+                                    },
+                                    {
+                                    "type": "url",
+                                    "id": "button_url_sec",
+                                    "label": "Button Url"
+                                    },
+                                    {
+                                    "type": "image_picker",
+                                    "id": "image_sec",
+                                    "label": "Image"
+                                    }
+                                ]
+                         }
+                ],
+                "presets": [
+                            {
+                            "name": "Services",
+                            "settings": {
+                                "title": "Row"
+                            },
+                            "blocks": [
+                                        {
+                                        "type": "sec_row"
+                                        },
+                                        {
+                                        "type": "sec_row"
+                                        }
+                                    ]
+                            }
+                         ]
+    }
+{% endschema %}

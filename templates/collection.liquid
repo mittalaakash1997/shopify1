@@ -1,0 +1,177 @@
+<section class="cb-hbanner">
+  <div class="cb-row">
+    <img src="{{ 'product-banner.png' | asset_url }}" alt="" class="bg-collection-img">
+    <div class="cb-hbanner-content">
+      <h1 class="cb-heading-ar">{{ collection.title }}</h1>
+      <p>{{ collection.description }}</p>
+    </div>
+  </div>
+</section>
+{% paginate collection.products by 12 %}
+  <section class="cb-collection-section cb-product-h svg-curv-section">
+    
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+  <path fill="#f9faf5" fill-opacity="1" d="M0,32L120,64C240,96,480,160,720,165.3C960,171,1200,117,1320,90.7L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+</svg>
+    <div class="cb-container">
+      <div class="cb-row">
+        <div class="cb-col-3 cb-pr-50">  
+          <form class="filter-form cb-product-filter">
+            {%- for filter in collection.filters -%}
+              <details class="filter-group">
+                <summary class="filter-group-summary">
+                  <div class="cb-filter-label">
+                    <span>{{ filter.label }}</span>
+
+                    {%- if filter.active_values.size > 0 -%}
+                      <span>({{ filter.active_values.size }})</span>
+                    {%- endif -%}
+                  </div>
+                </summary>
+
+                <div class="filter-group-display">
+                  <div class="filter-group-display__header">
+                    <span class="filter-group-display__header-selected">{{ filter.active_values.size }} selected</span>
+
+                    {%- if filter.active_values.size > 0 -%}
+                      <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
+                    {%- endif -%}
+                  </div>
+
+                  {%- case filter.type -%}
+                    {%- when 'boolean' or 'list' -%}
+                      <ul class="filter-group-display__list">
+                        {%- for filter_value in filter.values -%}
+                          <li class="filter-group-display__list-item">
+                            <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                            <input type="checkbox"
+                              name="{{ filter_value.param_name }}"
+                              value="{{ filter_value.value }}"
+                              id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                              {% if filter_value.active -%}checked{%- endif %}
+                              {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                            >{{ filter_value.label }}</label>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+
+                      <div class="filter-group-display__submit">
+                        <input type="submit" value="Apply" class="cb-btn">
+                      </div>
+                    {%- when 'price_range' -%}
+                      <div class="filter-group-display__price-range">
+                        <div class="filter-group-display__price-range-from">
+                          <span>{{ cart.currency.symbol }}</span>
+
+                          <input name="{{ filter.min_value.param_name }}"
+                            id="Filter-{{ filter.min_value.param_name }}"
+                            {% if filter.min_value.value -%}
+                              value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                            {%- endif %}
+                            type="number"
+                            placeholder="0"
+                            min="0"
+                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          >
+
+                          <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                        </div>
+                        <div class="filter-group-display__price-range-to">
+                          <span>{{ cart.currency.symbol }}</span>
+
+                          <input name="{{ filter.max_value.param_name }}"
+                            id="Filter-{{ filter.max_value.param_name }}"
+                            {% if filter.max_value.value -%}
+                              value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                            {%- endif %}
+                            type="number"
+                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            min="0"
+                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          >
+
+                          <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                        </div>
+                      </div>
+
+                      <div class="filter-group-display__submit">
+                        <input type="submit" value="Apply" class="cb-btn">
+                      </div>
+                  {%- endcase -%}
+                </div>
+              </details>
+            {%- endfor -%}
+
+            <div class="active-filters">
+              <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all</a>
+
+              {%- for filter in collection.filters -%}
+                {%- if filter.type == "price_range" -%}
+                  {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                    <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                      {{ min_value | money }} - {{ max_value | money }} X
+                    </a>
+                  {%- endif -%}
+                {%- else -%}
+                  {%- for filter_value in filter.active_values -%}
+                    <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+                      {{ filter.label }}: {{ filter_value.label }} X
+                    </a>
+                  {%- endfor -%}
+                {%- endif- %}
+              {%- endfor -%}
+            </div>
+          </form>
+        </div>
+        <div class="cb-col-75">      
+          <select id="sort-by">
+            {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+                {{ option.name }}
+              </option>
+            {% endfor %}
+          </select>
+          <div class="cb-row cb-collection-product">
+            {% for product in collection.products %}
+              <div class="cb-col-4">
+              {% render 'product-item', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="pagination">
+            {{ paginate | default_pagination }}
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endpaginate %}
+
+<script>
+  Shopify.queryParams = {};
+
+  // Preserve existing query parameters
+  if (location.search.length) {
+    var params = location.search.substr(1).split('&');
+
+    for (var i = 0; i < params.length; i++) {
+      var keyValue = params[i].split('=');
+
+      if (keyValue.length) {
+        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+      }
+    }
+  }
+
+  // Update sort_by query parameter on select change
+  document.querySelector('#sort-by').addEventListener('change', function(e) {
+    var value = e.target.value;
+
+    Shopify.queryParams.sort_by = value;
+    location.search = new URLSearchParams(Shopify.queryParams).toString();
+  });
+</script>

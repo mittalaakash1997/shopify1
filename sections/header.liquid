@@ -1,0 +1,79 @@
+<header>
+  {% if section.settings.top_header != blank %}
+    <div class="cb-top-header">
+      <p>{{ section.settings.top_header }}</p>
+    </div>
+  {% endif %}
+  <div class="cb-header">
+    <div class="cb-container">
+      <div class="header-wrap">
+        <div class="logo">
+          {% if section.settings.logo_image != blank %}
+            <a href="{{ shop.url }}">
+              <img src="{{ section.settings.logo_image | image_url }}" alt="{{ section.settings.logo_image | image_alt }}">
+            </a>
+          {% endif %}
+        </div>
+        <div class="cb-menu">
+          <ul>
+            {% for link in section.settings.header_menu.links -%}
+              <li {% if link.current %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+        <div class="cb-header-icons">
+          {% if section.settings.wishlist_url != blank %}
+            <a href="{{ section.settings.wishlist_url }}">
+              <img src="{{ 'like.png' | asset_url }}" alt="wishlist">
+            </a>
+          {% endif %}
+          {% if section.settings.cart_url != blank %}
+            <a href="{{ section.settings.cart_url }}">
+              <img src="{{ 'cart.png' | asset_url }}" alt="cart">
+            </a>
+          {% endif %}
+          {% if section.settings.myaccount_url != blank %}
+            <a href="{{ section.settings.myaccount_url }}">
+              <img src="{{ 'user2.png' | asset_url }}" alt="myaccount">
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "top_header",
+        "label": "Header Message"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_image",
+        "label": "Logo"
+      },
+      {
+        "type": "link_list",
+        "id": "header_menu",
+        "label": "Header Menu"
+      },
+      {
+        "type": "url",
+        "id": "wishlist_url",
+        "label": "Wishlist Page Url"
+      }, {
+        "type": "url",
+        "id": "cart_url",
+        "label": "Cart Page Url"
+      }, {
+        "type": "url",
+        "id": "myaccount_url",
+        "label": "My Accoount Page Url"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,14 @@
+<div class="blog-card">
+  <div class="cb-feature-img">
+    <a href="{{ article.url }}"><img src="{{ article | image_url }}" alt=""></a>
+  </div>
+  <div class="cb-post-cont">
+    <p class="cb-post-category">{{ blog.title }}</p>
+    <a href="{{ article.url }}">
+      <h3>{{ article.title }}</h3>
+      <p>Read More
+        <i class="fa fa-angle-right"></i>
+      </p>
+    </a>
+  </div>
+</div>

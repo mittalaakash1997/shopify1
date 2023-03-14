@@ -1,0 +1,38 @@
+<section class="blog-listing">
+  <div class="cb-container">
+    <h1 class="cb-heading-ar">Claybear Blog</h1>
+    <p>A collection of stories, tales and adventures from the ClayBear club</p>
+  </div>
+</section>
+<section class="cb-collection-section cb-product-h svg-curv-section">
+  <div class="cb-container">
+    <ul class="blog-tabs">
+      {% for link in linklists.blogs.links -%}
+        <li {% if link.current %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+      {%- endfor %}
+    </ul>
+    <div class="cb-row blogs-list">
+      {% for link in linklists.blogs.links %}
+        {% assign blog = link.object %}
+        {% for article in blog.articles %}
+          <div class="cb-col-4">
+            <div class="blog-card">
+              <div class="cb-feature-img">
+                <a href="{{ article.url }}"><img src="{{ article | image_url }}" alt=""></a>
+              </div>
+              <div class="cb-post-cont">
+                <p class="cb-post-category">{{ blog.title }}</p>
+                <a href="{{ article.url }}">
+                  <h3>{{ article.title }}</h3>
+                  <p>Read More
+                    <i class="fa fa-angle-right"></i>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

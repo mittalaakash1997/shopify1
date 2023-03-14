@@ -1,0 +1,825 @@
+$bg: #ffffff
+;
+$primary: #f6926b
+;
+$secondary: #000000
+;
+$text: #000000
+;
+$buttonText: #000000
+;
+$buttonBg: #c6cfc3
+;
+@font-face {
+  font-family: museo-100;
+  src: url("//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/MuseoSansCyrl-100.woff?v=157459915238163171251678132644") format("woff");
+}
+@font-face {
+  font-family: museo-300;
+  font-weight: 300;
+  src: url("//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/MuseoSansCyrl-300.woff?v=103321653331682975701678132276") format("woff");
+}
+@font-face {
+  font-family: museo-500;
+  font-weight: 500;
+  src: url("//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/MuseoSansCyrl-500.woff?v=73643895679085980861678132324") format("woff");
+}
+@font-face {
+  font-family: museo-700;
+  src: url("//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/MuseoSansCyrl-700.woff?v=170922601436291677571678132337") format("woff");
+}
+body {
+  background-color: #f9faf5;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: museo-300;
+  font-weight: 300;
+}
+img {
+  max-width: 100%;
+  width: 100%;
+}
+.cb-container {
+  max-width: 1200px;
+  margin: auto;
+}
+.cb-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cb-col-3 {
+  width: 25%;
+}
+.cb-col-4 {
+  width: 33%;
+}
+.cb-col-6 {
+  width: 50%;
+}
+.cb-col-75 {
+  width: 75%;
+}
+.cb-col-12 {
+  width: 100%;
+}
+.cb-pr-50 {
+  padding-right: 50px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+  color: $primary
+}
+p {
+  color: $text;
+  line-height: 1.5;
+  font-size: 18px;
+}
+.fw500 {
+  font-family: museo-500;
+  font-weight: 500;
+}
+h1 {
+  &.cb-heading-ar {
+    font-size: 40px;
+    letter-spacing: 0.8px;
+    font-family: museo-300;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+}
+h3 {
+  &.cb-heading-ar {
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    font-family: museo-300;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+}
+.cb-text-center {
+  text-align: center;
+}
+.cb-heading-ar {
+  font-size: 35px;
+  font-family: museo-300;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+.cb-heading-ar3 {
+  font-size: 25px;
+  font-family: museo-300;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+.cb-hero-section {
+  max-height: 600px;
+  position: relative;
+  background-image: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/bannerBg.png?v=156465444176119608831677527201');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  .cb-row {
+    z-index: 1;
+    position: relative;
+  }
+}
+.cb-top-header {
+  background-color: #D6D7B9;
+  padding: 10px 15px;
+  p {
+    color: $text;
+    font-size: 14px;
+    text-align: center;
+    font-family: museo-300;
+    font-weight: 300;
+  }
+}
+header {
+  .cb-header {
+    background: #F7F9F7;
+  }
+}
+.header-wrap {
+  display: grid;
+  grid-template-columns: 130px minmax(auto, 869px) auto;
+  align-items: center;
+  grid-gap: 47px;
+  padding: 15px 0;
+  .cb-menu {
+    ul {
+      list-style: none;
+      /* display: grid;
+      grid-template-columns: repeat(9, minmax(auto, 90px));
+      grid-gap: 16px; */
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      li {
+        width: max-content;
+        max-width: 95px;
+      }
+      a {
+        font-size: 14px;
+        text-decoration: none;
+        color: $text;
+         &:hover {
+          color: $primary;
+          font-family: museo-500;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .cb-header-icons {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    grid-gap: 15px;
+    img {
+      width: 24px;
+    }
+  }
+}
+.banner-left {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  .bannerLogo {
+    width: 125px;
+  }
+  .title {
+    font-size: 50px;
+    font-family: museo-500;
+    font-weight: 500;
+  }
+  .desc {}
+  .tagline {
+    font-size: 14px;
+    font-family: museo-100;
+    font-weight: 100;
+    opacity: .7;
+  }
+}
+.banner-right {
+  height: 580;
+  overflow: hidden;
+  text-align: center;
+  img {
+    max-height: 650px;
+    width: auto;
+  }
+}
+.cb-btn {
+  background: $buttonBg;
+  color: $buttonText;
+  padding: 7px 21px;
+  border-radius: 29px;
+  text-decoration: none;
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 20px;
+   &:hover {
+    opacity: 0.8;
+  }
+}
+.cb-collection-section {
+  padding: 75px 15px;
+
+  .collection-wrap {
+    a {
+      text-decoration: none;
+    }
+    h2 {
+      color: $secondary;
+      font-size: 30px;
+      letter-spacing: 0.38px;
+      line-height: 30px;
+      text-align: center;
+      font-family: museo-300;
+      font-weight: 300;
+      margin-top: 30px;
+    }
+    p {
+      margin-top: 12px;
+      font-size: 16px;
+      color: $text;
+      text-align: center;
+    }
+
+  }
+  .collection-img {
+    height: 285px;
+    text-align: center;
+    position: relative;
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+    }
+    
+  }
+  &.cb-product-h {
+    background: #f9faf5;
+
+    h2 {
+      text-align: center;
+    }
+    .product-img {
+      margin-bottom: 20px;
+      height: 213px;
+      text-align: center;
+      img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+      }
+    }
+  }
+  &.about-product-dec{
+    background-color: #F2F2E7;
+  }
+}
+
+.cb-subsc-service {
+  padding: 100px 15px;
+  .subs-row {
+    margin-bottom: 100px;
+    height: 470px;
+    overflow: hidden;
+    max-width: 990px;
+    margin-left: auto;
+    margin-right: auto;
+     &:last-child {
+      margin-bottom: 0;
+    }
+    .cb-left-serv {
+      padding: 66px 58px;
+      background-image: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/service1.png?v=44751271318567458511677615294');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      height: 100%;
+      max-height: 470px;
+      h2 {
+        margin-bottom: 12px;
+      }
+    }
+     &:nth-child(2n) {
+      flex-direction: row-reverse;
+      .cb-left-serv {
+        background-image: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/service2.png?v=105234130246663679011677615177');
+      }
+    }
+    .cb-right-serv {
+      img {
+        width: 100%;
+      }
+    }
+    .cb-btn {
+      margin-top: 30px;
+      padding: 14px 27px;
+    }
+  }
+}
+.cb-community {
+  padding: 75px 15px;
+  background: #F2F2E7;
+  .cb-comm {
+    padding: 11px;
+  }
+  h2,
+  h3 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+.cb-social-m {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 23px;
+  margin-bottom: 40px;
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+footer {
+  .cb-footer-sec {
+    background: #C6CFC3;
+  }
+  .footer-up {
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(175px, auto));
+    grid-gap: 100px;
+  }
+  .footer-up {
+    .f-title {
+      color: #585858;
+      font-size: 18px;
+      font-family: museo-500;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    ul {
+      list-style: none;
+      li {
+        margin-bottom: 3px;
+      }
+      a {
+        color: #585858;
+        font-size: 16px;
+        text-decoration: none;
+         &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .footer-down {
+    border-top: 1px solid #585858;
+    padding: 12px 15px 20px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .foo-text {
+      p {
+        font-size: 14px;
+        color: #585858;
+      }
+    }
+  }
+  .cb-social-m {
+    justify-content: start;
+    grid-gap: 15px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    img {
+      filter: grayscale(1);
+      width: 29px;
+    }
+  }
+}
+.cb-newsletter {
+  text-align: center;
+  width: 977px;
+  height: 214px;
+  background: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/newsletter.jpg?v=12815355948799041461677696930');
+  background-size: 100% 100%;
+  margin: auto;
+  padding: 25px 15px;
+  p {
+    font-size: 18px;
+    font-family: museo-300;
+    font-weight: 300;
+  }
+}
+
+.cb-hbanner {
+  background-image: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/product-banner-bg.png?v=180349790703973285591678003025');
+  background-size: 100% 100%;
+  .cb-row {
+    align-items: center;
+    grid-gap: 60px;
+  }
+  .bg-collection-img {
+    max-width: 320px;
+  }
+  .cb-hbanner-content {
+    width: 60%;
+    margin-top: -50px;
+  }
+  .cb-heading-ar {
+    margin-bottom: 10px;
+  }
+}
+
+.svg-curv-section {
+  position: relative;
+  svg {
+    position: absolute;
+    top: -158px;
+    left: 0;
+    width: 100%;
+    scale: 1 0.5;
+  }
+}
+.cb-product-filter {
+  .filter-group {
+    border-bottom: 1px solid #000;
+    padding: 20px 0;
+  }
+  .active-filters {
+    margin-top: 15px;
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+  .filter-group-display {
+    font-size: 16px;
+    ul {
+      list-style: none;
+      li {
+        padding: 10px 0;
+        input {
+          margin-right: 10px;
+        }
+      }
+    }
+    .filter-group-display__header {
+      padding: 10px 0;
+    }
+  }
+  input[type="submit"] {
+    border: 0;
+
+  }
+}
+.filter-group-summary {
+  font-size: 16px;
+  font-family: museo-500;
+  font-weight: 500;
+  .cb-filter-label {
+    display: inline-block;
+  }
+}
+
+.cb-collection-product {
+  .cb-col-4 {
+    margin-bottom: 25px;
+  }
+}
+#sort-by {
+  background: transparent;
+  border: 0;
+  margin-bottom: 25px;
+  font-size: 16px;
+  font-family: museo-500;
+  font-weight: 500;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 30px;
+  span,
+  a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: museo-500;
+    font-weight: 500;
+  }
+}
+
+.cb-contact-container {
+  max-width: 550px;
+  margin: auto;
+}
+.cb-contact,
+.shopify-challenge__container {
+  padding: 60px 20px 120px;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  p {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 15px;
+  }
+}
+.cb-back-img-sec {
+  position: absolute;
+  z-index: -1;
+  &.cb-top-right {
+    top: -100px;
+    right: -5px;
+  }
+  &.cb-top-left {
+    top: -60px;
+    left: -20px;
+  }
+  &.cb-bottom-right {
+    bottom: -46px;
+    right: -24px;
+  }
+  &.cb-bottom-left {
+    bottom: -80px;
+    left: -14px;
+  }
+}
+.cb-contact-form {
+  margin-top: 40px;
+  label {
+    display: block;
+    font-size: 16px;
+    font-family: museo-500;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  input,
+  textarea {
+    font-size: 16px;
+    font-family: museo-300;
+    font-weight: 300;
+    padding: 10px 20px;
+    border: 1px solid #D6D7B9;
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 28px;
+    background: transparent;
+    &::placeholder {
+      color: #B7B898;
+      font-size: 16px;
+    }
+  }
+  .submit {
+    .cb-btn,
+    input[type="submit"] {
+      border-radius: 12px;
+      border: 0;
+      background: $primary;
+      font-size: 16px;
+      font-family: museo-500;
+      font-weight: 500;
+      padding: 14px 28px;
+      cursor: pointer;
+    }
+  }
+
+}
+.shopify-challenge__button.btn,
+input[type="submit"] {
+  border-radius: 12px;
+  border: 0;
+  background: $primary;
+  font-size: 16px;
+  font-family: museo-500;
+  font-weight: 500;
+  padding: 14px 28px;
+  cursor: pointer;
+  margin: 20px auto;
+   &:hover {
+    opacity: .8;
+  }
+}
+
+.blog-listing {
+  background: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/blog-banner-bg.png?v=150828869995786343891678036787');
+  background-size: 100% 100%;
+  padding: 70px 20px;
+  text-align: center;
+  p {
+    font-size: 20px;
+    max-width: 400px;
+    margin: auto;
+  }
+}
+
+.blogs-list {
+  .blog-card {
+    padding: 20px;
+    .cb-feature-img {
+      margin-bottom: 20px;
+    }
+    .cb-post-cont {
+      .cb-post-category {
+        font-size: 16px;
+        color: #B7CCB6;
+        margin-bottom: 20px;
+      }
+      a {
+        text-decoration: none;
+        h3 {
+          font-size: 20px;
+          color: $text;
+          margin-bottom: 10px;
+        }
+        p {
+          font-size: 16px;
+          color: $text;
+        }
+         &:hover {
+          h3 {
+            color: $primary;
+          }
+          p {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.blog-child {
+  height: 400px;
+  background-image: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/blog-detail-bg.jpg?v=113341232883454139321678244064');
+  background-size: 100% 100%;
+  overflow: hidden;
+  text-align: center;
+  margin-bottom: -15px;
+  img {
+    max-width: 772px;
+    width: 772px;
+    margin: auto;
+  }
+}
+.cb-blog-detail {
+  padding: 80px 20px 0;
+  .cb-container {
+    max-width: 772px;
+  }
+  .cb-post-category {
+    font-size: 18px;
+    color: #B7CCB6;
+    margin-bottom: 20px;
+  }
+  h1 {
+    max-width: 560px;
+  }
+  .font-bold {
+    font-family: museo-500;
+    font-weight: 500;
+  }
+  .font-bold {
+    span {
+
+      font-family: museo-500;
+      font-weight: 500;
+    }
+  }
+  p {
+    font-size: 18px;
+    font-family: museo-300;
+    font-weight: 300;
+    margin: 30px 0;
+  }
+}
+.blog-tabs {
+  list-style: none;
+  display: flex;
+  grid-gap: 20px;
+  margin-bottom: 50px;
+  justify-content: center;
+
+  li {
+    max-width: max-content;
+    a {
+      padding: 8px 18px;
+      background: transparent;
+      font-size: 16px;
+      text-decoration: none;
+      color: $text;
+      border: 1px solid #D6D7B9;
+      border-radius: 10px;
+    }
+    &.active {
+      a {
+        background-color: #D6D7B9;
+      }
+    }
+  }
+}
+.faq-page {
+  .accordian-wrap {
+    margin-top: 40px;
+    .cb-accordian {
+      padding: 20px 0 10px;
+      max-width: 720px;
+      .title {
+        font-size: 22px;
+        font-family: museo-500;
+        cursor: pointer;
+        .icon {
+          width: 32px;
+          margin-left: 50px;
+          vertical-align: middle;
+          position: relative;
+          display: inline-block;
+           &:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-bottom: 2px solid #fff;
+            border-left: 2px solid #fff;
+            top: 9px;
+            left: 12px;
+            position: absolute;
+            transform: rotate(315deg);
+            z-index: 1;
+            transition: 0.3s all;
+          }
+        }
+      }
+      .description {
+        font-size: 18px;
+        padding: 15px 0 0;
+        display: none;
+      }
+      &.active {
+        .title {
+          .icon {
+             &:after {
+              transform: rotate(135deg);
+              top: 12px;
+            }
+          }
+        }
+        .description {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.cb-about-us {
+  text-align: center;
+  height: 300px;
+  background-image: url('//cdn.shopify.com/s/files/1/0726/0926/8002/t/2/assets/about-banner.png?v=10611289740140693501678478469');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 18px;
+    max-width: 430px;
+    margin: auto;
+  }
+}
+.about-content{
+  padding: 80px 20px;
+  .cb-container{
+    max-width: 750px;
+  }
+  p{
+    margin: 30px 0;
+  }
+}
+.about-product-dec{
+  margin-bottom: 200px;
+}
+
+@media(max-width: 1500px) {
+  .svg-curv-section {
+    position: relative;
+    svg {
+      top: -137px;
+    }
+  }
+}

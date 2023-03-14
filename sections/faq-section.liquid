@@ -1,0 +1,45 @@
+<section class="cb-contact faq-page">
+  <div class="cb-back-img-sec cb-top-right"><img src="{{ 'top-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-top-left"><img src="{{ 'top-left.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-right"><img src="{{ 'bottom-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-left"><img src="{{ 'bottom-left.png' | asset_url }}"></div>
+  <div class="cb-container">
+    <h1 class="cb-heading-ar">Claybear {{ page.title }}</h1>
+    <div class="accordian-wrap">
+      {% for block in section.blocks %}
+        {% assign item = block.settings %}
+        <div class="cb-accordian">
+          <div class="title">{{ item.question }}
+            <span class="icon"><img src="{{ 'dropdown-icon.png' | asset_url }}"></span>
+          </div>
+          <div class="description">{{ item.answer }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "FAQ Page",
+    "blocks": [
+      {
+        "name": "FAQ Item",
+        "type": "faq",
+        "settings": [
+          {
+            "type": "text",
+            "id": "question",
+            "label": "Question",
+            "default": "Do you have a question?"
+          }, {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer",
+            "default": "<p>I have an answer</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

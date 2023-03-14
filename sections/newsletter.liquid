@@ -1,0 +1,24 @@
+<section class="cb-collection-section">
+  <div class="cb-container">
+    <div class="cb-newsletter">
+      <p>{{ section.settings.newsletter_desc }}</p>
+      <h2 class="cb-heading-ar">{{ section.settings.newsletter_title }}</h2>
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "newsletter_title",
+        "label": "Title"
+      }, {
+        "type": "richtext",
+        "id": "newsletter_desc",
+        "label": "Description"
+      }
+    ]
+  }
+{% endschema %}

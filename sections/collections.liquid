@@ -1,0 +1,22 @@
+<section class="cb-collection-section">
+  <div class="cb-container">
+    <div class="cb-row">
+      {% for collection in section.settings.collection_list %}
+        {% render 'collection-item', collection: collection %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "collections",
+    "settings": [
+      {
+        "type": "collection_list",
+        "id": "collection_list",
+        "label": "Collections",
+        "limit": 4
+      }
+    ]
+  }
+{% endschema %}

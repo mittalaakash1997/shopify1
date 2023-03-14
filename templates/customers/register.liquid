@@ -1,0 +1,40 @@
+<section class="cb-contact">
+  <div class="cb-back-img-sec cb-top-right"><img src="{{ 'top-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-top-left"><img src="{{ 'top-left.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-right"><img src="{{ 'bottom-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-left"><img src="{{ 'bottom-left.png' | asset_url }}"></div>
+  <div class="cb-contact-container cb-text-center">
+    <h1 class="cb-heading-ar">Account Login</h1>
+    <div class="cb-contact-form account-form">
+      {% form 'create_customer' %}
+        {{ form.errors | default_errors }}
+
+        <div class="first-name">
+          <label for="first-name">First name</label>
+          <input type="text" name="customer[first_name]">
+        </div>
+
+        <div class="last-name">
+          <label for="last-name">Last name</label>
+          <input type="text" name="customer[last_name]">
+        </div>
+
+        <div class="email">
+          <label for="email">Email</label>
+          <input type="email" name="customer[email]">
+        </div>
+
+        <div class="password">
+          <label for="password">Password</label>
+          <input type="password" name="customer[password]">
+        </div>
+
+        <div class="submit">
+          <input type="submit" value="Create">
+        </div>
+      {% endform %}
+
+    </div>
+
+  </div>
+</section>

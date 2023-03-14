@@ -1,0 +1,51 @@
+<section class="cb-community">
+  <div class="cb-container">
+    <h2 class="cb-heading-ar">{{ section.settings.section_heading }}</h2>
+    <h3 class="cb-heading-ar3">{{ section.settings.social_tag }}</h3>
+    <div class="cb-social-m">
+      <a href="{{settings.insta}}"><img src="{{ 'insta.png' | asset_url }}" alt="instagram"></a>
+      <a href="{{settings.facebook}}"><img src="{{ 'facebook.png' | asset_url }}" alt="facebook"></a>
+    </div>
+    <div class="cb-row">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'image_add' %}
+          <div class="cb-col-3">
+            <div class="cb-comm">
+              <img src="{{block.settings.gallery_image | image_url}}" alt="{{block.settings.gallery_image | image_alt}}">
+            </div>
+          </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Community",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_heading",
+        "label": "title"
+      }, {
+        "type": "text",
+        "id": "social_tag",
+        "label": "Social Media @"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Image",
+        "type": "image_add",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "gallery_image",
+            "label": "Gallery Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

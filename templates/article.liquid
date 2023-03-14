@@ -1,0 +1,46 @@
+<section class="blog-child">
+  <img src="{{ article.image | image_url }}" alt="">
+</section>
+<section class="cb-blog-detail svg-curv-section">
+    
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+    <path fill="#f9faf5" fill-opacity="1" d="M0,32L120,64C240,96,480,160,720,165.3C960,171,1200,117,1320,90.7L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+  </svg>
+  <div class="cb-container">
+  <p class="cb-post-category">{{ blog.title }}</p>
+  <h1 class="cb-heading-ar">{{ article.title }}</h1>
+  <p class="cb-post-category">{{ article.published_at | date: '%B %d, %Y' }}</p>
+  <p class="font-bold">{{ article.excerpt }}</p>
+  <p>{{ article.metafields.custom.content_paragraph_1 }}</p>
+  <img src="{{ article.image | image_url }}" alt="">
+  {{ article.content }}
+  <p>{{article.metafields.custom.content_after_products}}</p>
+  {% if article.comments_enabled? %}
+    {% for commen in article.comments %}
+      {{ commen.name }}
+      {{ commen.email }}
+      {{ commen.content }}
+    {% endfor %}
+    <h2>add a comment</h2>
+    <div class="cb-contact-form">
+    {% form 'new_comment', article %}
+      comment form
+      <button type="submit">submit</button>
+    {% endform %}
+    </div>
+  {% endif %}
+</div>
+</section>
+{%  section 'best_seller' %}
+<section class="cb-collection-section cb-product-h svg-curv-section">
+  <div class="cb-container">
+    <h2 class="cb-heading-ar">Similar reads</h2>
+    <div class="cb-row blogs-list">
+      {% for article in blog.articles limit: 3 %}
+        <div class="cb-col-4">
+          {% render 'blog-card', article: article %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

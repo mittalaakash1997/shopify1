@@ -1,0 +1,29 @@
+<section class="cb-contact">
+  <div class="cb-back-img-sec cb-top-right"><img src="{{ 'top-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-top-left"><img src="{{ 'top-left.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-right"><img src="{{ 'bottom-right.png' | asset_url }}"></div>
+  <div class="cb-back-img-sec cb-bottom-left"><img src="{{ 'bottom-left.png' | asset_url }}"></div>
+  <div class="cb-contact-container">
+    <h1 class="cb-heading-ar cb-text-center">Account Login</h1>
+    <div class="cb-contact-form account-form">
+      {% form 'customer_login' %}
+        {{ form.errors | default_errors }}
+
+        <div class="email">
+          <label for="email">Email</label>
+          <input type="email" name="customer[email]">
+        </div>
+
+        <div class="password">
+          <label for="password">Password</label>
+          <input type="password" name="customer[password]">
+        </div>
+
+        <div class="submit">
+          <input type="submit" value="Sign in">
+        </div>
+      {% endform %}
+    </div>
+
+  </div>
+</section>

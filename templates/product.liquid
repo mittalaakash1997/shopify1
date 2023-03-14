@@ -1,0 +1,194 @@
+<h1>{{ product.title }}</h1>
+{% if product.selected_or_first_available_variant.featured_image %}
+  {% assign featured = product.selected_or_first_available_variant.featured_image %}
+  <img
+    id="product-image"
+    src="{{ featured | image_url }}"
+    alt="">
+{% else %}
+  {% assign featured = product.featured_image %}
+  <img
+    id="product-image"
+    src="{{ featured | image_url }}"
+    alt="">
+{% endif %}
+<ul class="product-image-thumb">
+
+  {% for image in product.images %}
+    <li class="{% if image == featured %}selected{% endif %}">
+      <img src="{{ image | image_url: master }}" alt="">
+    </li>
+  {% endfor %}
+</ul>
+<p>{{ product.description }}</p>
+<p class="product-compare {% unless product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}hide{% endunless %}">
+  {{ product.selected_or_first_available_variant.compare_at_price | money }}
+</p>
+<p class="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+{% form 'product', product %}
+  {% comment %} <input type="hidden" name="return_to" value="/checkout"> {%   endcomment %}
+  <input type="hidden"
+    id="product-id"
+    name="id"
+    value="{{ product.selected_or_first_available_variant.id }}">
+
+  {% comment %} swatches {% endcomment %}
+  {% if product.variants.size > 1 %}
+    <div class="product-option">
+      {% for option in product.options_with_values %}
+        <fieldset>
+          <legend>{{ option.name }}</legend>
+          {% for value in option.values %}
+            <div>
+              <input
+                {% if option.selected_value == value %}checked{% endif %}
+                type="radio"
+                name="{{ option.name }}"
+                value="{{ value }}"
+                id="{{ option.name | handlize }}-{{ value | handlize }}">
+              <label for="{{ option.name | handlize }}-{{ value | handlize }}">{{ value }}</label>
+            </div>
+          {% endfor %}
+        </fieldset>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+<label for="Quantity">Quantity</label>
+<button type="button" class="quantity-minus">-</button>
+<input id="quantity" name="quantity" value="1" >
+<button type="button" class="quantity-plus">+</button>
+
+  {% comment %} <select name="id">
+  {% for variant in product.variants %}
+  <option value="{{variant.id}}">
+  {{ variant.title }}
+  </option>
+  {% endfor %}
+  </select> {% endcomment %}
+  <button id="add-to-cart"
+    {% unless product.selected_or_first_available_variant.available %}
+    disabled
+    {% endunless %}
+    type="submit">
+    {% if product.selected_or_first_available_variant.available %}
+      Add to Cart
+    {% else %}
+      Out of Stock
+    {% endif %}
+  </button>
+{% endform %}
+
+<script>
+  var product = {{ product | json }}
+
+  document
+  .querySelectorAll(".product-option input[type='radio']")
+  .forEach(radio => {
+      radio.addEventListener('change', () => {
+
+  // find selected options
+        var selectedOptions = []
+
+        document.querySelectorAll(".product-option input[type='radio']:checked").forEach(radio => {
+          selectedOptions.push(radio.value)
+        })
+
+  // finding th mtch variant
+        var matchVariant = product
+          .variants
+          .find(variant => {
+            var pass = true
+            for (var i = 0; i < selectedOptions.length; i++) {
+              if (selectedOptions.indexOf(variant.options[i]) === -1) {
+                pass = false
+                break
+              }
+            }
+            return pass
+          })
+
+    // change product form variant id
+          document
+          .querySelector("#product-id")
+          .value = matchVariant.id
+
+  // change url
+        var url = new URLParse(window.location.href, true)
+        url.query.variant = matchVariant
+          .id
+          window
+          .history
+          .replaceState(null, null, url.toString())
+
+    // change prices
+          document
+          .querySelector(".product-price")
+          .textContent = Shopify.formatMoney(matchVariant.price, "{{ shop.money_format }}")
+        document.querySelector(".product-compare").textContent = Shopify.formatMoney(matchVariant.compare_at_price, "{{ shop.money_format }}")
+
+        matchVariant.compare_at_price > matchVariant.price
+          ? document.querySelector(".product-compare").classList.remove('hide')
+          : document.querySelector(".product-compare").classList.add('hide')
+
+  // change image
+        if (matchVariant.featured_image) {
+          document
+            .querySelector("#product-image")
+            .setAttribute("src", matchVariant.featured_image.src)
+            document
+            .querySelector(".product-image-thumb li.selected")
+            .classList
+            .remove('selected')
+          document
+          .querySelectorAll(".product-image-thumb li")[matchVariant.featured_image.position - 1]
+          .classList
+          .add('selected')
+
+  // change add to cart button
+  var addCart = document.querySelector("#add-to-cart")
+        if (matchVariant.available) {
+            addCart.disabled = false
+            addCart.textContent = "Add To Cart"
+          }
+          else{
+            addCart.disabled = true
+            addCart.textContent = "Out Of Stock"            
+          }
+        }
+    })
+  })
+
+  document
+  .querySelectorAll(".product-image-thumb li")
+  .forEach(li => {
+    li.addEventListener('click', () => {
+      document
+        .querySelector(".product-image-thumb li.selected")
+        .classList
+        .remove('selected')
+        li
+        .classList
+        .add('selected')
+
+      document
+      .querySelector("#product-image")
+      .setAttribute("src", li.querySelector("img").getAttribute("src"))
+  })
+})
+
+
+document.querySelector(".quantity-plus").addEventListener('click', () => {
+  var currQuantity = Number(document.querySelector("#quantity").value)
+  document.querySelector("#quantity").value = currQuantity + 1
+})
+
+document.querySelector(".quantity-minus").addEventListener('click', () => {
+  var currQuantity = Number(document.querySelector("#quantity").value)
+  if(currQuantity > 1){
+    document.querySelector("#quantity").value = currQuantity - 1
+    }
+})
+
+
+</script>

@@ -1,0 +1,60 @@
+<section class="cb-hero-section">
+  <div class="cb-container">
+    <div class="cb-row">
+      <div class="cb-col-6">
+        <div class="banner-left">
+          <img
+            src="{{ section.settings.banner_logo | image_url }}"
+            alt="{{ section.settings.banner_logo | image_alt }}"
+            class="bannerLogo">
+          <h1 class="title">{{ section.settings.banner_heading }}</h1>
+          <p class="desc">{{ section.settings.banner_desc }}</p>
+          <p class="tagline">{{ section.settings.banner_tagline }}</p>
+          <a href="{{ section.settings.banner_url }}" class="cb-btn">{{ section.settings.banner_button }}</a>
+        </div>
+      </div>
+      <div class="cb-col-6 banner-right">
+        <img src="{{ section.settings.banner_image | image_url }}" alt="{{ section.settings.banner_image | image_alt }}">
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Banner Heading",
+    "settings": [
+      {
+        "type": "text",
+        "id": "banner_heading",
+        "label": "Banner Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "banner_desc",
+        "label": "Banner Description"
+      },
+      {
+        "type": "text",
+        "id": "banner_tagline",
+        "label": "Banner Tagline"
+      },
+      {
+        "type": "text",
+        "id": "banner_button",
+        "label": "Button"
+      }, {
+        "type": "url",
+        "id": "banner_url",
+        "label": "Button Link"
+      }, {
+        "type": "image_picker",
+        "id": "banner_logo",
+        "label": "Banner Logo Image"
+      }, {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner Image"
+      }
+    ]
+  }
+{% endschema %}

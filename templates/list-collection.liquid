@@ -1,0 +1,12 @@
+{% paginate collections by 2 %}
+  <section class="cb-collection-section">
+    <div class="cb-container">
+      <div class="cb-row">
+        {% for collection in collections %}
+          {% render 'collection-item', collection: collection %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {{ paginate | default_pagination }}
+{% endpaginate %}

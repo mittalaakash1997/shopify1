@@ -1,0 +1,66 @@
+<footer>
+  <div class="cb-footer-sec">
+    <div class="cb-container">
+      <div class="footer-up">
+        <div class="footer-col">
+          <h4 class="f-title">{{ section.settings.footer_menu1 }}</h4>
+          <ul>
+            {% for link in section.settings.footer_menu1_list.links -%}
+              <li {% if link.current %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+            {%- endfor %}
+          </ul>
+          <div class="cb-social-m">
+            <a href="{{settings.insta}}"><img src="{{ 'insta.png' | asset_url }}" alt="instagram"></a>
+            <a href="{{settings.facebook}}"><img src="{{ 'facebook.png' | asset_url }}" alt="facebook"></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="f-title">{{ section.settings.footer_menu2 }}</h4>
+          <ul>
+            {% for link in section.settings.footer_menu2_list.links -%}
+              <li {% if link.current %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-down">
+        <div class="foo-text">
+          {{ section.settings.footer_bottom_text }}
+        </div>
+        <img src="{{ 'paymentcards.png' | asset_url  }}" alt="">
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "footer_menu1",
+        "label": "Footer menu 1 Title"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu1_list",
+        "label": "Footer menu 1"
+      },
+      {
+        "type": "text",
+        "id": "footer_menu2",
+        "label": "Footer menu 2 Title"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu2_list",
+        "label": "Footer menu 2"
+      }, {
+        "type": "richtext",
+        "id": "footer_bottom_text",
+        "label": "Footer Text"
+      }
+    ]
+  }
+{% endschema %}
